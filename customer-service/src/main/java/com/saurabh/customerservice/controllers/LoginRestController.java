@@ -1,6 +1,7 @@
 package com.saurabh.customerservice.controllers;
 
 import java.util.HashMap;
+import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,10 @@ public class LoginRestController {
 		} else {
 			customer.setRole("customer");
 		}
+		
+		String password = customer.getPassword();
+		String EncodedPassword = Base64.getEncoder().encodeToString(password.getBytes());
+		customer.setPassword(EncodedPassword);
 		Customer cust = service.save(customer);
 		HashMap<String, Object> map = new HashMap<>();
 		if (cust == null) {
@@ -47,6 +52,9 @@ public class LoginRestController {
 	@PostMapping("/signin")
 	public ResponseEntity<?> signIn(@RequestBody Credentials cred) {
 		Customer customer = service.findByEmail(cred.getEmail());
+		byte[] decodedBytes = Base64.getDecoder().decode(customer.getPassword());
+		String decodedString = new String(decodedBytes);
+		customer.setPassword(decodedString);
 		HashMap<String, Object> map = new HashMap<>();
 		if (customer.getPassword().equals(cred.getPassword())) {
 			map.put("status", "success");
