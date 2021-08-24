@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 
 
 const restaurantschema = new mongoose.Schema({
-     restaurant_id: Number,
      name: String,
      address: String,
      phone: Number,
@@ -10,21 +9,26 @@ const restaurantschema = new mongoose.Schema({
      password: String,
      zipcode: Number,
      restaurant_thumbnail: String,
-     restaurant_rating: Number,
+     restaurant_rating: {
+       type : Number,
+       default : 0
+     },
      description: String,
      fooditems:[
         {
-             fooditem_id: Number,
-             category: String,
-             name: String,
-             priceperunit: Number,
-             food_thumbnail: String,
-             food_rating: Number,
-            description: String
+          name: String,  
+          category: String,             
+          priceperunit: Number,
+          food_thumbnail: String,
+          food_rating: {
+            type : Number,
+            default : 0
+          },
+          description: String
         }
      ]
 })
 
 const Restaurant = mongoose.model('Restaurant', restaurantschema);
 
-module.exports = { Restaurant } 
+module.exports = Restaurant 

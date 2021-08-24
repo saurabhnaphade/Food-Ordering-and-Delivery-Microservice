@@ -19,7 +19,16 @@ function createError(error) {
   return result
 }
 
+function createData(data) {
+  const result = {}
+  result['data'] = data
+  result['status'] = 'success'
+
+  return result
+}
+
 module.exports = {
   createResult: createResult,
   createError: createError,
+  createData : createData
 }

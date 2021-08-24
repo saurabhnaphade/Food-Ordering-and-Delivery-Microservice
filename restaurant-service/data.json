@@ -1,33 +1,29 @@
-{
-    "hotel_id":" 1 ",
-    "name":"the name of the hotel",
+{    "name":"the name of the hotel",
     "address":"address of the hotel",
     "phone":"phone no of hotel",
     "email":"hotel@gmail.com",
     "password":"hotel@password",
     "zipcode":"zipcode of the hotel",
-    "hotel_thumbnail":" image of hotel ",
-    "hotel_rating":"1-5",
+    "restaurant_thumbnail":" image of hotel ",
+    "restaurant_rating":"1-5",
     "description":" some information about hotel",
-    "fooditems":[
-        {
-            "fooditem_id":" 1 ",
+    "fooditems":[{
             "category":" veg ",
             "name":" veg biryani ",
             "priceperunit":" 200 ",
             "food_thumbnail":" image of food ",
-            "food rating":" 1 - 5 ",
+            "food_rating":" 1 - 5 ",
             "description":" some information about the food item "
-        },{
-            "fooditem_id":" 2 ",
+        },
+        {
             "category":" non-veg ",
             "name":" chicken biryani ",
             "priceperunit":" 200 ",
             "food_thumbnail":" image of food ",
             "food rating":" 1 - 5 ",
             "description":" some information about the food item "
-        },{
-            "fooditem_id":" 3 ",
+        },
+        {
             "category":" veg ",
             "name":" paneer tikka ",
             "priceperunit":" 200 ",
