@@ -1,22 +1,9 @@
-package com.saurabh.orderservice.entities;
+package com.saurabh.customerservice.dtos;
 
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class CustomerOrdersDTO {
 
-import org.hibernate.annotations.CreationTimestamp;
-
-@Entity
-@Table(name = "orders")
-public class Orders {
-
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Id
 	private int order_id;
 	private String custname;
 	private String menuname;
@@ -26,16 +13,13 @@ public class Orders {
 	private float total_price;
 	private int is_active;
 	private String status;
-
-	@CreationTimestamp
-	@Column(name = "created_timestamp", nullable = false, updatable = false, insertable = false)
 	private Timestamp created_timestamp;
 
-	public Orders() {
+	public CustomerOrdersDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Orders(int order_id, String custname, String menuname, String restaurantname, String cust_address,
+	public CustomerOrdersDTO(int order_id, String custname, String menuname, String restaurantname, String cust_address,
 			int quantity, float total_price, int is_active, String status, Timestamp created_timestamp) {
 		super();
 		this.order_id = order_id;
@@ -110,8 +94,8 @@ public class Orders {
 		return is_active;
 	}
 
-	public void setIs_active(int isActive) {
-		this.is_active = isActive;
+	public void setIs_active(int is_active) {
+		this.is_active = is_active;
 	}
 
 	public String getStatus() {
@@ -132,7 +116,7 @@ public class Orders {
 
 	@Override
 	public String toString() {
-		return "Orders [order_id=" + order_id + ", custname=" + custname + ", menuname=" + menuname
+		return "CustomerOrdersDTO [order_id=" + order_id + ", custname=" + custname + ", menuname=" + menuname
 				+ ", restaurantname=" + restaurantname + ", cust_address=" + cust_address + ", quantity=" + quantity
 				+ ", total_price=" + total_price + ", is_active=" + is_active + ", status=" + status
 				+ ", created_timestamp=" + created_timestamp + "]";

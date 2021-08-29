@@ -25,4 +25,14 @@ public class OrdersServiceImpl implements OrdersService{
 		return dao.save(order);
 	}
 
+	@Override
+	public Orders[] findByCustname(String custname) {
+		return dao.findByCustname(custname);
+	}
+
+	@Override
+	public Orders[] findByRestaurantname(String restaurantname) {
+		return dao.findByRestaurantname(restaurantname);
+	}
+
 }

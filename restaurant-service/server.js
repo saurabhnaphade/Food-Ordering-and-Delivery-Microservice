@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const multer = require('multer')
 const cryptoJS = require('crypto-js')
+const Request = require('request')
 
 const url = 'mongodb://localhost:27017/restaurant_db'
 
@@ -192,9 +193,27 @@ app.delete('/deletefooditems/:restaurantname' , (request , response) => {
 
 })
 
+// Api for getting all orders from order-service using restaurantname
+
+app.get('/getallorders/:restaurantname' , (request , response) => {
+  
+  const RestaurantName = request.params.restaurantname
+
+  Request.get('http://127.0.0.1:8500/restaurantorders/' + RestaurantName , (error , resp , data) => {
+
+    if(error){
+      response.send(utils.createError(error))
+    }else{
+      response.send(utils.createData(JSON.parse(data)))
+    }
+
+  })
+
+})
+
 app.listen(PORT, () => {
   console.log("restaurant-service started on port 8300...");
 })
 
 
-eurekaHelper.registerWithEureka('restaurant-service', PORT);
+// eurekaHelper.registerWithEureka('restaurant-service', PORT);

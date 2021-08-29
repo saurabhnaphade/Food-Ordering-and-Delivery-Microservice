@@ -1,9 +1,10 @@
 package com.saurabh.orderservice.dtos;
 
-public class ordersDTO {
+import java.sql.Timestamp;
+
+public class CustomerOrderDTO {
 
 	private int order_id;
-	private String cust_name;
 	private String menu_name;
 	private String restaurant_name;
 	private String cust_address;
@@ -11,16 +12,14 @@ public class ordersDTO {
 	private float total_price;
 	private int isActive;
 	private String status;
+	private Timestamp created_timestamp;
 
-	public ordersDTO() {
-		// TODO Auto-generated constructor stub
+	public CustomerOrderDTO() {
 	}
 
-	public ordersDTO(int order_id, String cust_name, String menu_name, String restaurant_name, String cust_address,
-			int quantity, float total_price, int isActive, String status) {
-		super();
+	public CustomerOrderDTO(int order_id, String menu_name, String restaurant_name, String cust_address, int quantity,
+			float total_price, int isActive, String status, Timestamp created_timestamp) {
 		this.order_id = order_id;
-		this.cust_name = cust_name;
 		this.menu_name = menu_name;
 		this.restaurant_name = restaurant_name;
 		this.cust_address = cust_address;
@@ -28,6 +27,7 @@ public class ordersDTO {
 		this.total_price = total_price;
 		this.isActive = isActive;
 		this.status = status;
+		this.created_timestamp = created_timestamp;
 	}
 
 	public int getOrder_id() {
@@ -36,14 +36,6 @@ public class ordersDTO {
 
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
-	}
-
-	public String getCust_name() {
-		return cust_name;
-	}
-
-	public void setCust_name(String cust_name) {
-		this.cust_name = cust_name;
 	}
 
 	public String getMenu_name() {
@@ -102,11 +94,20 @@ public class ordersDTO {
 		this.status = status;
 	}
 
+	public Timestamp getCreated_timestamp() {
+		return created_timestamp;
+	}
+
+	public void setCreated_timestamp(Timestamp created_timestamp) {
+		this.created_timestamp = created_timestamp;
+	}
+
 	@Override
 	public String toString() {
-		return "ordersDTO [order_id=" + order_id + ", menu_name=" + menu_name + ", restaurant_name=" + restaurant_name
-				+ ", cust_address=" + cust_address + ", quantity=" + quantity + ", total_price=" + total_price
-				+ ", isActive=" + isActive + ", status=" + status + "]";
+		return "CustomerOrderDTO [order_id=" + order_id + ", menu_name=" + menu_name + ", restaurant_name="
+				+ restaurant_name + ", cust_address=" + cust_address + ", quantity=" + quantity + ", total_price="
+				+ total_price + ", isActive=" + isActive + ", status=" + status + ", created_timestamp="
+				+ created_timestamp + "]";
 	}
 
 }
