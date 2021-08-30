@@ -211,6 +211,21 @@ app.get('/getallorders/:restaurantname' , (request , response) => {
 
 })
 
+// Api for getting all restaurant information with food information
+
+app.get('/getallrestaurantinfowithfooditems' , (request , response) => {
+  restaurantdb.find({} , (error , data) => {
+
+    if(error){
+      response.send(utils.createError(error))
+    }else{
+      response.send(utils.createData(data))
+    }
+
+  })
+})
+
+
 app.listen(PORT, () => {
   console.log("restaurant-service started on port 8300...");
 })
