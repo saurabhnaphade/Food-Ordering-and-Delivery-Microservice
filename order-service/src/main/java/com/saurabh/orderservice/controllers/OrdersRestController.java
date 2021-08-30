@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -52,6 +53,46 @@ public class OrdersRestController {
 		if (ordersList != null) {
 			map.put("status", "success");
 			map.put("data", ordersList);
+			ResponseEntity.status(HttpStatus.OK).build();
+			return ResponseEntity.ok(map);
+		} else {
+			map.put("status", "error");
+			map.put("data", "");
+			ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.ok(map);
+		}
+	}
+	
+	@PutMapping("/markorderdelivered/{orderid}")
+	public ResponseEntity<?> markAsDelivered(@PathVariable("orderid") int orderid){
+		Orders unmodifiedorder = service.findByOrderid(orderid);
+		unmodifiedorder.setIs_active(0);
+		Orders deliveredorder = service.save(unmodifiedorder);
+		
+		HashMap<String, Object> map = new HashMap<>();
+		if (deliveredorder != null) {
+			map.put("status", "success");
+			map.put("data", deliveredorder );
+			ResponseEntity.status(HttpStatus.OK).build();
+			return ResponseEntity.ok(map);
+		} else {
+			map.put("status", "error");
+			map.put("data", "");
+			ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.ok(map);
+		}
+	}
+	
+	@PutMapping("/updatestatus/{orderid}/{status}")
+	public ResponseEntity<?> updateStatusOfOrder(@PathVariable("orderid") int orderid , @PathVariable("status") String status){
+		Orders unmodifiedorder = service.findByOrderid(orderid);
+		unmodifiedorder.setStatus(status);
+		Orders updatedorder = service.save(unmodifiedorder);
+		
+		HashMap<String, Object> map = new HashMap<>();
+		if (updatedorder != null) {
+			map.put("status", "success");
+			map.put("data", updatedorder);
 			ResponseEntity.status(HttpStatus.OK).build();
 			return ResponseEntity.ok(map);
 		} else {

@@ -17,14 +17,16 @@ public class Orders {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private int order_id;
+	private int orderid;
 	private String custname;
 	private String menuname;
 	private String restaurantname;
 	private String cust_address;
 	private int quantity;
 	private float total_price;
-	private int is_active;
+	
+	@Column(name="is_active")
+	private int is_active = 1;
 	private String status;
 
 	@CreationTimestamp
@@ -35,10 +37,9 @@ public class Orders {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Orders(int order_id, String custname, String menuname, String restaurantname, String cust_address,
+	public Orders(int orderid, String custname, String menuname, String restaurantname, String cust_address,
 			int quantity, float total_price, int is_active, String status, Timestamp created_timestamp) {
-		super();
-		this.order_id = order_id;
+		this.orderid = orderid;
 		this.custname = custname;
 		this.menuname = menuname;
 		this.restaurantname = restaurantname;
@@ -50,12 +51,12 @@ public class Orders {
 		this.created_timestamp = created_timestamp;
 	}
 
-	public int getOrder_id() {
-		return order_id;
+	public int getOrderid() {
+		return orderid;
 	}
 
-	public void setOrder_id(int order_id) {
-		this.order_id = order_id;
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
 	}
 
 	public String getCustname() {
@@ -132,10 +133,10 @@ public class Orders {
 
 	@Override
 	public String toString() {
-		return "Orders [order_id=" + order_id + ", custname=" + custname + ", menuname=" + menuname
-				+ ", restaurantname=" + restaurantname + ", cust_address=" + cust_address + ", quantity=" + quantity
-				+ ", total_price=" + total_price + ", is_active=" + is_active + ", status=" + status
-				+ ", created_timestamp=" + created_timestamp + "]";
+		return "Orders [orderid=" + orderid + ", custname=" + custname + ", menuname=" + menuname + ", restaurantname="
+				+ restaurantname + ", cust_address=" + cust_address + ", quantity=" + quantity + ", total_price="
+				+ total_price + ", is_active=" + is_active + ", status=" + status + ", created_timestamp="
+				+ created_timestamp + "]";
 	}
 
 }
