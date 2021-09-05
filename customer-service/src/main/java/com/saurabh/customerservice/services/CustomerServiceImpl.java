@@ -45,4 +45,15 @@ public class CustomerServiceImpl implements CustomerService {
 		return null;
 	}
 
+	@Override
+	public void deleteById(int id) {
+		Dao.deleteById(id);
+
+	}
+
+	@Override
+	public void deleteByEmail(String email) {
+		Dao.deleteByEmail(email);
+	}
+
 }

@@ -2,16 +2,18 @@ package com.saurabh.orderservice.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.saurabh.orderservice.daos.OrdersDao;
 import com.saurabh.orderservice.entities.Orders;
 
-
+@Transactional
 @Service
-public class OrdersServiceImpl implements OrdersService{
-	
+public class OrdersServiceImpl implements OrdersService {
+
 	@Autowired
 	private OrdersDao dao;
 
@@ -28,11 +30,6 @@ public class OrdersServiceImpl implements OrdersService{
 	@Override
 	public Orders[] findByCustname(String custname) {
 		return dao.findByCustname(custname);
-	}
-
-	@Override
-	public Orders[] findByRestaurantname(String restaurantname) {
-		return dao.findByRestaurantname(restaurantname);
 	}
 
 	@Override

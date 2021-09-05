@@ -5,6 +5,10 @@ import java.util.List;
 import com.saurabh.customerservice.entities.Customer;
 
 public interface CustomerService {
+	
+	void deleteByEmail(String email);
+	
+	void deleteById(int id);
 
 	Customer findByEmail(String email);
 

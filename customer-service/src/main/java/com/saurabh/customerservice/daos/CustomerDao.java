@@ -7,5 +7,8 @@ import com.saurabh.customerservice.entities.Customer;
 public interface CustomerDao extends JpaRepository<Customer, Integer> {
 
 	Customer findByEmail(String email);
+	
+	void deleteByEmail(String email);
+	
 
 }

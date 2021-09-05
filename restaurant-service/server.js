@@ -90,6 +90,33 @@ app.post('/addrestaurant' , upload.single('restaurant_thumbnail') ,  (request , 
 
 })
 
+// Api for updating the restaurant
+
+app.put('/updaterestaurant/:restaurantname' , upload.single('restaurant_thumbnail') ,  (request , response) => {
+
+  const filename = request.file.filename
+
+  restaurantdb.findOneAndUpdate({ name : request.params.restaurantname } , 
+    {
+    name : request.body.name,
+    address : request.body.address,
+    phone : request.body.phone,
+    email : request.body.email,
+    zipcode : request.body.zipcode,
+    restaurant_thumbnail : filename,
+    restaurant_rating : request.body.restaurant_rating,
+    description : request.body.description
+    } , 
+    { new: true } , ( error , data) => {
+      if(error){
+        response.send(utils.createError(error))
+      }else{
+        response.send(utils.createData(data))
+      }
+  })
+
+})
+
 // Api for adding the food item in perticular restaurant
 
 app.put('/addfooditem/:name' , upload.single('food_thumbnail') , (request , response) => {

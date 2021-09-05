@@ -5,7 +5,7 @@ import java.util.List;
 import com.saurabh.orderservice.entities.Orders;
 
 public interface OrdersService {
-	
+
 	Orders findByOrderid(int orderid);
 
 	List<Orders> findAll();
@@ -13,7 +13,5 @@ public interface OrdersService {
 	Orders save(Orders order);
 
 	Orders[] findByCustname(String custname);
-
-	Orders[] findByRestaurantname(String restaurantname);
 
 }
