@@ -37,4 +37,14 @@ public class OrdersServiceImpl implements OrdersService {
 		return dao.findByOrderid(orderid);
 	}
 
+	@Override
+	public Orders[] findByRestaurantname(String restaurantname) {
+		return dao.findByRestaurantname(restaurantname);
+	}
+
+	@Override
+	public Orders[] findByDeliveryid(int deliveryid) {
+		return dao.findByDeliveryid(deliveryid);
+	}
+
 }

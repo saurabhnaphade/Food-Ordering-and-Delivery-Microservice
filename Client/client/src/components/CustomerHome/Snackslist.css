@@ -1,0 +1,9 @@
+.columnstyle{ 
+    column-count: 3;
+    column-gap: 1em;
+    column-rule: 1px;
+    -webkit-column-count: 3; 
+    -webkit-column-gap: 1em; 
+    -webkit-column-rule: 1px solid black;
+    }
+    

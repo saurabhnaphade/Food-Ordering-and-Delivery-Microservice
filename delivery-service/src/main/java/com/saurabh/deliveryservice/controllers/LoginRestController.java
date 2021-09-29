@@ -28,7 +28,7 @@ public class LoginRestController {
 	private DeliveryboyService service;
 
 	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@RequestBody Deliveryboy deliveryboy) {
+	public ResponseEntity<?> registerUser(Deliveryboy deliveryboy) {
 		String password = deliveryboy.getPassword();
 		String encodedPassword = Base64.getEncoder().encodeToString(password.getBytes());
 		deliveryboy.setPassword(encodedPassword);
@@ -48,7 +48,7 @@ public class LoginRestController {
 	}
 
 	@PostMapping("/signin")
-	public ResponseEntity<?> signIn(@RequestBody Credentials cred) {
+	public ResponseEntity<?> signIn( Credentials cred) {
 		Deliveryboy deliveryBoy = service.findByEmail(cred.getEmail());
 		byte[] decodedBytes = Base64.getDecoder().decode(deliveryBoy.getPassword());
 		String decodedString = new String(decodedBytes);

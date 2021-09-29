@@ -1,0 +1,21 @@
+.drop{
+margin-left: 90%;
+}
+
+.pages{
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    text-align: left;
+    
+}
+.snacks{
+    display: flex;
+}
+
+.back{
+    background-image: url("../../images/background3.jpg");
+}
+.divStyleon{
+background-color: darkgoldenrod;
+}

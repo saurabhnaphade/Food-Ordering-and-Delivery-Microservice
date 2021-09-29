@@ -1,45 +1,48 @@
 package com.saurabh.customerservice.dtos;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class CustomerOrdersDTO {
 
-	private int order_id;
+	private int orderid;
 	private String custname;
-	private String menuname;
 	private String restaurantname;
 	private String cust_address;
-	private int quantity;
+	private int totalitems;
 	private float total_price;
 	private int is_active;
 	private String status;
 	private Timestamp created_timestamp;
 
+	private List<FoodItemsDTO> fooditems;
+
 	public CustomerOrdersDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CustomerOrdersDTO(int order_id, String custname, String menuname, String restaurantname, String cust_address,
-			int quantity, float total_price, int is_active, String status, Timestamp created_timestamp) {
+	public CustomerOrdersDTO(int orderid, String custname, String restaurantname, String cust_address, int totalitems,
+			float total_price, int is_active, String status, Timestamp created_timestamp,
+			List<FoodItemsDTO> fooditems) {
 		super();
-		this.order_id = order_id;
+		this.orderid = orderid;
 		this.custname = custname;
-		this.menuname = menuname;
 		this.restaurantname = restaurantname;
 		this.cust_address = cust_address;
-		this.quantity = quantity;
+		this.totalitems = totalitems;
 		this.total_price = total_price;
 		this.is_active = is_active;
 		this.status = status;
 		this.created_timestamp = created_timestamp;
+		this.fooditems = fooditems;
 	}
 
-	public int getOrder_id() {
-		return order_id;
+	public int getOrderid() {
+		return orderid;
 	}
 
-	public void setOrder_id(int order_id) {
-		this.order_id = order_id;
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
 	}
 
 	public String getCustname() {
@@ -48,14 +51,6 @@ public class CustomerOrdersDTO {
 
 	public void setCustname(String custname) {
 		this.custname = custname;
-	}
-
-	public String getMenuname() {
-		return menuname;
-	}
-
-	public void setMenuname(String menuname) {
-		this.menuname = menuname;
 	}
 
 	public String getRestaurantname() {
@@ -74,12 +69,12 @@ public class CustomerOrdersDTO {
 		this.cust_address = cust_address;
 	}
 
-	public int getQuantity() {
-		return quantity;
+	public int getTotalitems() {
+		return totalitems;
 	}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setTotalitems(int totalitems) {
+		this.totalitems = totalitems;
 	}
 
 	public float getTotal_price() {
@@ -114,12 +109,20 @@ public class CustomerOrdersDTO {
 		this.created_timestamp = created_timestamp;
 	}
 
+	public List<FoodItemsDTO> getFooditems() {
+		return fooditems;
+	}
+
+	public void setFooditems(List<FoodItemsDTO> fooditems) {
+		this.fooditems = fooditems;
+	}
+
 	@Override
 	public String toString() {
-		return "CustomerOrdersDTO [order_id=" + order_id + ", custname=" + custname + ", menuname=" + menuname
-				+ ", restaurantname=" + restaurantname + ", cust_address=" + cust_address + ", quantity=" + quantity
-				+ ", total_price=" + total_price + ", is_active=" + is_active + ", status=" + status
-				+ ", created_timestamp=" + created_timestamp + "]";
+		return "CustomerOrdersDTO [orderid=" + orderid + ", custname=" + custname + ", restaurantname=" + restaurantname
+				+ ", cust_address=" + cust_address + ", totalitems=" + totalitems + ", total_price=" + total_price
+				+ ", is_active=" + is_active + ", status=" + status + ", created_timestamp=" + created_timestamp
+				+ ", fooditems=" + fooditems + "]";
 	}
 
 }

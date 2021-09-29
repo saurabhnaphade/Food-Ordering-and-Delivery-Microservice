@@ -10,4 +10,6 @@ public interface DeliveryboysDao extends JpaRepository<Deliveryboy, Integer> {
 
 	Deliveryboy findByFname(String fname);
 	
+	void deleteByEmail(String email);
+	
 }

@@ -1,6 +1,5 @@
 package com.saurabh.customerservice.entities;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,14 +20,15 @@ public class Customer {
 	private String password;
 	private String address;
 	private int zipcode;
-	private String role;
+	private String role = "customer";
+	private String security;
 
 	public Customer() {
 	}
 
 	public Customer(int cust_id, String fname, String lname, long phone, String email, String password, String address,
-			int zipcode, String role) {
-		super();
+			int zipcode, String role, String security) {
+
 		this.cust_id = cust_id;
 		this.fname = fname;
 		this.lname = lname;
@@ -38,6 +38,7 @@ public class Customer {
 		this.address = address;
 		this.zipcode = zipcode;
 		this.role = role;
+		this.security = security;
 	}
 
 	public int getCust_id() {
@@ -112,11 +113,19 @@ public class Customer {
 		this.role = role;
 	}
 
+	public String getSecurity() {
+		return security;
+	}
+
+	public void setSecurity(String security) {
+		this.security = security;
+	}
+
 	@Override
 	public String toString() {
 		return "Customer [cust_id=" + cust_id + ", fname=" + fname + ", lname=" + lname + ", phone=" + phone
 				+ ", email=" + email + ", password=" + password + ", address=" + address + ", zipcode=" + zipcode
-				+ ", role=" + role + "]";
+				+ ", role=" + role + ", security=" + security + "]";
 	}
 
 }

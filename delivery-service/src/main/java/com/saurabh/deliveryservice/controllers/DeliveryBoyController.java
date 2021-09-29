@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.saurabh.deliveryservice.entities.Deliveryboy;
@@ -42,9 +43,10 @@ public class DeliveryBoyController {
 		
 	}
 	
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> deleteDeliveryBoy(@PathVariable("id") int id){
-		service.deleteById(id);
+	@DeleteMapping("/delete/{email}")
+	public ResponseEntity<?> deleteDeliveryBoy(@PathVariable("email") String email){
+		Deliveryboy delivery = service.findByEmail(email);
+		service.deleteById(delivery.getDeliveryboy_id());
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("status", "success");
 		map.put("data", "Deleted Successfully");

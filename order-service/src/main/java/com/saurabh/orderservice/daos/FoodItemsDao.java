@@ -6,6 +6,6 @@ import com.saurabh.orderservice.entities.FoodItems;
 
 public interface FoodItemsDao extends JpaRepository<FoodItems, Integer>{
 	
-	FoodItems[] findByRestaurantname(String restaurantname);
+	//FoodItems[] findByRestaurantname(String restaurantname);
 
 }

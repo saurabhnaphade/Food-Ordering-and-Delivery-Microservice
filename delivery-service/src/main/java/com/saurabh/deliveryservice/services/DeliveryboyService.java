@@ -17,5 +17,7 @@ public interface DeliveryboyService {
 	List<Deliveryboy> findAll();
 	
 	void deleteById(Integer id);
+	
+	void deleteByEmail(String email);
 
 }

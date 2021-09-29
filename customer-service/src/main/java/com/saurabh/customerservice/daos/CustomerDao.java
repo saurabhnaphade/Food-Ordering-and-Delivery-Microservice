@@ -2,13 +2,12 @@ package com.saurabh.customerservice.daos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.saurabh.customerservice.entities.Customer;
+import com.saurabh.customerservice.entities.*;
 
-public interface CustomerDao extends JpaRepository<Customer, Integer> {
-
-	Customer findByEmail(String email);
+public interface CustomerDao extends JpaRepository<Customer, Integer>{
 	
 	void deleteByEmail(String email);
-	
+
+	Customer findByEmail(String email);
 
 }

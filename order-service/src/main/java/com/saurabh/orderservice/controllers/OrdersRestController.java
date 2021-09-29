@@ -34,6 +34,7 @@ public class OrdersRestController {
 
 		Orders order = new Orders();
 		order.setCustname(incomingorder.getCustname());
+		order.setRestaurantname(incomingorder.getRestaurantname());
 		order.setCust_address(incomingorder.getCust_address());
 		order.setTotal_price(incomingorder.getTotal_price());
 		order.setTotalitems(incomingorder.getTotalitems());
@@ -76,25 +77,25 @@ public class OrdersRestController {
 		}
 	}
 
-	@PutMapping("/markorderdelivered/{orderid}")
-	public ResponseEntity<?> markAsDelivered(@PathVariable("orderid") int orderid) {
-		Orders unmodifiedorder = service.findByOrderid(orderid);
-		unmodifiedorder.setIs_active(0);
-		Orders deliveredorder = service.save(unmodifiedorder);
-
-		HashMap<String, Object> map = new HashMap<>();
-		if (deliveredorder != null) {
-			map.put("status", "success");
-			map.put("data", deliveredorder);
-			ResponseEntity.status(HttpStatus.OK).build();
-			return ResponseEntity.ok(map);
-		} else {
-			map.put("status", "error");
-			map.put("data", "");
-			ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-			return ResponseEntity.ok(map);
-		}
-	}
+//	@PutMapping("/markorderdelivered/{orderid}")
+//	public ResponseEntity<?> markAsDelivered(@PathVariable("orderid") int orderid) {
+//		Orders unmodifiedorder = service.findByOrderid(orderid);
+//		unmodifiedorder.setIs_active(0);
+//		Orders deliveredorder = service.save(unmodifiedorder);
+//
+//		HashMap<String, Object> map = new HashMap<>();
+//		if (deliveredorder != null) {
+//			map.put("status", "success");
+//			map.put("data", deliveredorder);
+//			ResponseEntity.status(HttpStatus.OK).build();
+//			return ResponseEntity.ok(map);
+//		} else {
+//			map.put("status", "error");
+//			map.put("data", "");
+//			ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//			return ResponseEntity.ok(map);
+//		}
+//	}
 
 	@PutMapping("/updatestatus/{orderid}/{status}")
 	public ResponseEntity<?> updateStatusOfOrder(@PathVariable("orderid") int orderid,
@@ -116,6 +117,110 @@ public class OrdersRestController {
 			return ResponseEntity.ok(map);
 		}
 	}
+	
+	@PutMapping("/hotelrejectorder/{orderid}")
+	public ResponseEntity<?> hotelrejectorder(@PathVariable("orderid") int orderid) {
+		Orders unmodifiedorder = service.findByOrderid(orderid);
+		unmodifiedorder.setStatus("Order Rejected By Hotel");
+		unmodifiedorder.setIs_active(0);
+		Orders updatedorder = service.save(unmodifiedorder);
+
+		HashMap<String, Object> map = new HashMap<>();
+		if (updatedorder != null) {
+			map.put("status", "success");
+			map.put("data", updatedorder);
+			ResponseEntity.status(HttpStatus.OK).build();
+			return ResponseEntity.ok(map);
+		} else {
+			map.put("status", "error");
+			map.put("data", "");
+			ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.ok(map);
+		}
+	}
+	
+	@PutMapping("/deliveryrejectorder/{orderid}")
+	public ResponseEntity<?> deliveryrejectorder(@PathVariable("orderid") int orderid) {
+		Orders unmodifiedorder = service.findByOrderid(orderid);
+		unmodifiedorder.setStatus("Order Rejected By Delivery Person");
+		Orders updatedorder = service.save(unmodifiedorder);
+
+		HashMap<String, Object> map = new HashMap<>();
+		if (updatedorder != null) {
+			map.put("status", "success");
+			map.put("data", updatedorder);
+			ResponseEntity.status(HttpStatus.OK).build();
+			return ResponseEntity.ok(map);
+		} else {
+			map.put("status", "error");
+			map.put("data", "");
+			ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.ok(map);
+		}
+	}
+	
+	
+	@PutMapping("/deliveryAccept/{orderid}/{deliveryid}")
+	public ResponseEntity<?> deliveryAcceptOrder(@PathVariable("orderid") int orderid , @PathVariable("deliveryid") int deliveryid){
+		Orders order = service.findByOrderid(orderid);
+		order.setDeliveryid(deliveryid);
+		order.setStatus("Accepted By Delivery Person");
+		Orders newOrder = service.save(order);
+
+		HashMap<String, Object> map = new HashMap<>();
+		if (newOrder != null) {
+			map.put("status", "success");
+			map.put("data", newOrder);
+			ResponseEntity.status(HttpStatus.OK).build();
+			return ResponseEntity.ok(map);
+		} else {
+			map.put("status", "error");
+			map.put("data", "");
+			ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.ok(map);
+		}
+	}
+	
+	@PutMapping("/markasdelivered/{orderid}")
+	public ResponseEntity<?> markAsDelivered(@PathVariable("orderid") int orderid){
+		Orders order = service.findByOrderid(orderid);
+		order.setStatus("Delivered");
+		order.setIs_active(0);
+		Orders newOrder = service.save(order);
+
+		HashMap<String, Object> map = new HashMap<>();
+		if (newOrder != null) {
+			map.put("status", "success");
+			map.put("data", newOrder);
+			ResponseEntity.status(HttpStatus.OK).build();
+			return ResponseEntity.ok(map);
+		} else {
+			map.put("status", "error");
+			map.put("data", "");
+			ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.ok(map);
+		}
+	}
+	
+	@GetMapping("/getalldeliveryorder/{deliveryid}")
+	public ResponseEntity<?> getDeliveryOrders(@PathVariable("deliveryid") int deliveryid){
+		
+		Orders[] orders = service.findByDeliveryid(deliveryid);
+
+		HashMap<String, Object> map = new HashMap<>();
+		if (orders != null) {
+			map.put("status", "success");
+			map.put("data", orders);
+			ResponseEntity.status(HttpStatus.OK).build();
+			return ResponseEntity.ok(map);
+		} else {
+			map.put("status", "error");
+			map.put("data", "");
+			ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.ok(map);
+		}
+		
+	}
 
 	@GetMapping("/customerorders/{customername}")
 	public Orders[] getCustomerOrders(@PathVariable("customername") String customername) {
@@ -123,10 +228,16 @@ public class OrdersRestController {
 		return ordersList;
 	}
 
+//	@GetMapping("/restaurantorders/{restaurantname}")
+//	public FoodItems[] getRestaurantOrders(@PathVariable("restaurantname") String restaurantname) {
+//		FoodItems[] fooditems = foodService.findByRestaurantname(restaurantname);
+//		return fooditems;
+//	}
+	
 	@GetMapping("/restaurantorders/{restaurantname}")
-	public FoodItems[] getRestaurantOrders(@PathVariable("restaurantname") String restaurantname) {
-		FoodItems[] fooditems = foodService.findByRestaurantname(restaurantname);
-		return fooditems;
+	public Orders[] getRestaurantOrders(@PathVariable("restaurantname") String restaurantname) {
+		Orders[] order = service.findByRestaurantname(restaurantname);
+		return order;
 	}
 
 }

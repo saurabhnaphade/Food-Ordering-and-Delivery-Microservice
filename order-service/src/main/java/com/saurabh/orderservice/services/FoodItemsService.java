@@ -6,6 +6,6 @@ public interface FoodItemsService {
 	
 	FoodItems save(FoodItems fooditem);
 	
-	FoodItems[] findByRestaurantname(String restaurantname);
+	//FoodItems[] findByRestaurantname(String restaurantname);
 
 }

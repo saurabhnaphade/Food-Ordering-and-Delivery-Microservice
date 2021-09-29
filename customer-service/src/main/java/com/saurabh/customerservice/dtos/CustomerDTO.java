@@ -1,10 +1,7 @@
 package com.saurabh.customerservice.dtos;
 
-import org.springframework.beans.BeanUtils;
-
-import com.saurabh.customerservice.entities.Customer;
-
 public class CustomerDTO {
+
 	private int cust_id;
 	private String fname;
 	private String lname;
@@ -18,9 +15,8 @@ public class CustomerDTO {
 	public CustomerDTO() {
 	}
 
-	public CustomerDTO(int cust_id, String fname, String lname, long phone, String email, String password,
-			String address, int zipcode, String role) {
-		super();
+	public CustomerDTO(int cust_id, String fname, String lname, long phone, String email, String password, String address,
+			int zipcode, String role) {
 		this.cust_id = cust_id;
 		this.fname = fname;
 		this.lname = lname;
@@ -104,25 +100,11 @@ public class CustomerDTO {
 		this.role = role;
 	}
 
-	// called from get
-	public static CustomerDTO fromEntity(Customer cust) {
-		CustomerDTO custDTO = new CustomerDTO();
-		BeanUtils.copyProperties(cust, custDTO);
-		return custDTO;
-	}
-
-	// called from POST, PUT
-	public static Customer toEntity(CustomerDTO custDTO) {
-		Customer cust = new Customer();
-		BeanUtils.copyProperties(custDTO, cust);
-		return cust;
-	}
-
 	@Override
 	public String toString() {
-		return "CustomerDTO [cust_id=" + cust_id + ", fname=" + fname + ", lname=" + lname + ", phone=" + phone
-				+ ", email=" + email + ", password=" + password + ", address=" + address + ", zipcode=" + zipcode
-				+ ", role=" + role + "]";
+		return "User [cust_id=" + cust_id + ", fname=" + fname + ", lname=" + lname + ", phone=" + phone + ", email="
+				+ email + ", password=" + password + ", address=" + address + ", zipcode=" + zipcode + ", role=" + role
+				+ "]";
 	}
 
 }

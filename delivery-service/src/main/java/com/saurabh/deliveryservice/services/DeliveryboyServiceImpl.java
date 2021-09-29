@@ -47,4 +47,10 @@ public class DeliveryboyServiceImpl implements DeliveryboyService{
 		return dao.findAll();
 	}
 
+	@Override
+	public void deleteByEmail(String email) {
+		dao.deleteByEmail(email);
+		
+	}
+
 }

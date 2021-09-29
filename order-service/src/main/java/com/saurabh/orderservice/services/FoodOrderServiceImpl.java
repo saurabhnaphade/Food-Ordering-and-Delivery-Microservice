@@ -19,9 +19,9 @@ public class FoodOrderServiceImpl implements FoodItemsService{
 	public FoodItems save(FoodItems fooditem) {
 		return dao.save(fooditem);
 	}
-
-	@Override
-	public FoodItems[] findByRestaurantname(String restaurantname) {
-		return dao.findByRestaurantname(restaurantname);
-	}
+//
+//	@Override
+//	public FoodItems[] findByRestaurantname(String restaurantname) {
+//		return dao.findByRestaurantname(restaurantname);
+//	}
 }

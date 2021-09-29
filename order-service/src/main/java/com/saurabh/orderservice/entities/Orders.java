@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -26,6 +25,7 @@ public class Orders {
 	@Id
 	private int orderid;
 	private String custname;
+	private String restaurantname;
 	private String cust_address;
 	private float total_price;
 	private int totalitems;
@@ -37,6 +37,7 @@ public class Orders {
 	@CreationTimestamp
 	@Column(name = "created_timestamp", nullable = false, updatable = false, insertable = false)
 	private Timestamp created_timestamp;
+	private int deliveryid;
 
 	@OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
 	@JsonManagedReference
@@ -46,16 +47,20 @@ public class Orders {
 		this.fooditems = new ArrayList<FoodItems>();
 	}
 
-	public Orders(int orderid, String custname, String cust_address, float total_price, int totalitems, int is_active,
-			String status, Timestamp created_timestamp, List<FoodItems> fooditems) {
+	public Orders(int orderid, String custname, String restaurantname, String cust_address, float total_price,
+			int totalitems, int is_active, String status, Timestamp created_timestamp, int deliveryid,
+			List<FoodItems> fooditems) {
+		super();
 		this.orderid = orderid;
 		this.custname = custname;
+		this.restaurantname = restaurantname;
 		this.cust_address = cust_address;
 		this.total_price = total_price;
 		this.totalitems = totalitems;
 		this.is_active = is_active;
 		this.status = status;
 		this.created_timestamp = created_timestamp;
+		this.deliveryid = deliveryid;
 		this.fooditems = fooditems;
 	}
 
@@ -73,6 +78,14 @@ public class Orders {
 
 	public void setCustname(String custname) {
 		this.custname = custname;
+	}
+
+	public String getRestaurantname() {
+		return restaurantname;
+	}
+
+	public void setRestaurantname(String restaurantname) {
+		this.restaurantname = restaurantname;
 	}
 
 	public String getCust_address() {
@@ -123,6 +136,14 @@ public class Orders {
 		this.created_timestamp = created_timestamp;
 	}
 
+	public int getDeliveryid() {
+		return deliveryid;
+	}
+
+	public void setDeliveryid(int deliveryid) {
+		this.deliveryid = deliveryid;
+	}
+
 	public List<FoodItems> getFooditems() {
 		return fooditems;
 	}
@@ -133,9 +154,10 @@ public class Orders {
 
 	@Override
 	public String toString() {
-		return "Orders [orderid=" + orderid + ", custname=" + custname + ", cust_address=" + cust_address
-				+ ", total_price=" + total_price + ", totalitems=" + totalitems + ", is_active=" + is_active
-				+ ", status=" + status + ", created_timestamp=" + created_timestamp + ", fooditems=" + fooditems + "]";
+		return "Orders [orderid=" + orderid + ", custname=" + custname + ", restaurantname=" + restaurantname
+				+ ", cust_address=" + cust_address + ", total_price=" + total_price + ", totalitems=" + totalitems
+				+ ", is_active=" + is_active + ", status=" + status + ", created_timestamp=" + created_timestamp
+				+ ", deliveryid=" + deliveryid + ", fooditems=" + fooditems + "]";
 	}
 
 	public void addFoodItems(List<FoodItems> foodList) {

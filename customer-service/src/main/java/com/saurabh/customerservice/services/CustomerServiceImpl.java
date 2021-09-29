@@ -7,13 +7,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.saurabh.customerservice.daos.CustomerDao;
-import com.saurabh.customerservice.entities.Customer;
+import com.saurabh.customerservice.daos.*;
+import com.saurabh.customerservice.entities.*;
 
 @Transactional
 @Service
-public class CustomerServiceImpl implements CustomerService {
-
+public class CustomerServiceImpl implements CustomerService{
+	
 	@Autowired
 	private CustomerDao Dao;
 
@@ -23,8 +23,8 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer save(Customer user) {
-		return Dao.save(user);
+	public Customer save(Customer customer) {
+		return Dao.save(customer);
 	}
 
 	@Override
@@ -43,12 +43,6 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<Customer> findAll() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void deleteById(int id) {
-		Dao.deleteById(id);
-
 	}
 
 	@Override

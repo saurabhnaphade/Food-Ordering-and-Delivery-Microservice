@@ -18,10 +18,10 @@ public class FoodItems {
 	@Id
 	private int fooditemid;
 	private String menuname;
-	private String restaurantname;
+	// private String restaurantname;
 	private int quantity;
 	private int priceperunit;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "orderid")
 	@JsonBackReference
@@ -31,20 +31,12 @@ public class FoodItems {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Orders getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Orders orders) {
-		this.orders = orders;
-	}
-
-	public FoodItems(int fooditemid, String menuname, String restaurantname, int quantity, int priceperunit) {
+	public FoodItems(int fooditemid, String menuname, int quantity, int priceperunit, Orders orders) {
 		this.fooditemid = fooditemid;
 		this.menuname = menuname;
-		this.restaurantname = restaurantname;
 		this.quantity = quantity;
 		this.priceperunit = priceperunit;
+		this.orders = orders;
 	}
 
 	public int getFooditemid() {
@@ -63,14 +55,6 @@ public class FoodItems {
 		this.menuname = menuname;
 	}
 
-	public String getRestaurantname() {
-		return restaurantname;
-	}
-
-	public void setRestaurantname(String restaurantname) {
-		this.restaurantname = restaurantname;
-	}
-
 	public int getQuantity() {
 		return quantity;
 	}
@@ -87,10 +71,18 @@ public class FoodItems {
 		this.priceperunit = priceperunit;
 	}
 
+	public Orders getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Orders orders) {
+		this.orders = orders;
+	}
+
 	@Override
 	public String toString() {
-		return "FoodItems [fooditemid=" + fooditemid + ", menuname=" + menuname + ", restaurantname=" + restaurantname
-				+ ", quantity=" + quantity + ", priceperunit=" + priceperunit + "]";
+		return "FoodItems [fooditemid=" + fooditemid + ", menuname=" + menuname + ", quantity=" + quantity
+				+ ", priceperunit=" + priceperunit + ", orders=" + orders + "]";
 	}
 
 }
