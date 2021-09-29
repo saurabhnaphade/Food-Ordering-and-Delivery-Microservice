@@ -1,0 +1,35 @@
+
+
+h1 {
+    text-align: center;
+    margin: 10px;
+    
+  }
+  
+.imaged{
+  
+  height: 50%;
+  width: 20%;
+  margin-left: 42%;
+  margin-top: 15%;
+  
+}  
+
+.styled{
+  background-image: url('../Images/Requirements_online_food.png')  ;
+  height: 800px;
+  width: 100%;
+  text-align: left;
+
+}
+  
+.style_emaild{
+  margin-top: 10%;
+}
+
+.style_fontd{
+  font-size: large;
+  
+
+}
+
